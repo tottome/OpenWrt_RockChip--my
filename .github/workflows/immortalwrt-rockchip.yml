@@ -34,8 +34,9 @@ jobs:
             '# CONFIG_TARGET_ROOTFS_EXT4FS is not set' \
             'CONFIG_TARGET_ROOTFS_SQUASHFS=y' \
             'CONFIG_PACKAGE_luci=y' \
-            'CONFIG_PACKAGE_luci-i18n-base-zh-cn=y' > .config
+            'CONFIG_LUCI_LANG_zh_Hans=y' > .config
           make defconfig
+          set -x
           grep -qx 'CONFIG_TARGET_ROOTFS_PARTSIZE=2048' .config
           grep -qx 'CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y' .config
           grep -qx 'CONFIG_PACKAGE_luci-i18n-base-zh-cn=y' .config
