@@ -25,7 +25,7 @@ jobs:
           set -euxo pipefail
           image=openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-squashfs-sysupgrade.img.gz
           echo "291b251e1c3ee346942496c15ef5c06137e01a858f6dd96ed4087c3722f800e5  $image" | sha256sum -c -
-          gzip -dc "$image" > r4s.img
+          gzip -dc "$image" > r4s.img || [ "$?" -eq 2 ]
           sfdisk --json r4s.img > partition.json
           offset=$(jq -r '.partitiontable.partitions[1].start * 512' partition.json)
           sudo unsquashfs -o "$offset" -d rootfs r4s.img
