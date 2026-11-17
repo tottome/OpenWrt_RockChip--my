@@ -21,7 +21,7 @@ jobs:
           git clone --depth 1 --branch v25.12.6 https://github.com/openwrt/openwrt.git openwrt
           cd openwrt
           ./scripts/feeds update -a
-          ./scripts/feeds install -a
+          ./scripts/feeds install luci luci-i18n-base-zh-cn
 
       - name: Configure R4S
         working-directory: openwrt
